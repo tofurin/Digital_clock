@@ -35,8 +35,29 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_button_bg"
+        android:backgroundTint="#40FFFFFF"
         android:text="@string/setting_button"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="600dp"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/Texttime"
+        tools:layout_editor_absoluteY="16dp">
+
+        <Button
+            android:id="@+id/exit_btn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_button_bg_in_light"
+            android:text="@string/exit_btn" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

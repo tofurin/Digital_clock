@@ -7,4 +7,5 @@
     <string name="app_widget_description">Digital clock</string>
     <string name="Widget_text" />
     <string name="setting_button">i</string>
+    <string name="exit_btn">×</string>
 </resources>

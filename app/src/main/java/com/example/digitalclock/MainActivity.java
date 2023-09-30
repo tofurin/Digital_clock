@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Handler handler = new Handler();
 
     Button setting_button;
-    //Button exit_btn;
+    Button exit_btn;
 
-    View setting_layout;
+    View bottomSheet;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         //各buttonのid取得
         Texttime = findViewById(R.id.Texttime);
         setting_button = findViewById(R.id.setting_button);
-        //setting_layout = findViewById(R.id.setting_layout);
-        //exit_btn = findViewById(R.id.exit_btn);
+        exit_btn = findViewById(R.id.exit_btn);
+        bottomSheet = findViewById(R.id.bottomSheet);
 
         //各buttonのリスナークラス登録
-        //setting_button.setOnClickListener(new setting_button_listener());
-        //exit_btn.setOnClickListener(new exit_btn_listener());
+        setting_button.setOnClickListener(new setting_button_listener());
+        exit_btn.setOnClickListener(new exit_btn_listener());
 
         timer = new Timer();
 
@@ -69,14 +69,14 @@ public class MainActivity extends AppCompatActivity {
     public class setting_button_listener implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            //setting_layout.setVisibility(View.VISIBLE);
+            bottomSheet.setVisibility(View.VISIBLE);
         }
     }
 
-    //public class exit_btn_listener implements View.OnClickListener{
-        //@Override
-        //public void onClick(View view){
-            //setting_layout.setVisibility(View.GONE);
-        //}
-    //}
+    public class exit_btn_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+            bottomSheet.setVisibility(View.GONE);
+        }
+    }
 }
