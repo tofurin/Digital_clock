@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Digital clock</string>
+    <string name="Texttime" />
+    <string name="setting_btn">i</string>
+</resources>
