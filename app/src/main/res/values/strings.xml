@@ -2,4 +2,8 @@
     <string name="app_name">Digital clock</string>
     <string name="Texttime" />
     <string name="setting_btn">i</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Digital clock</string>
+    <string name="Widget_text" />
 </resources>
