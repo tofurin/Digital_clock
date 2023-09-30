@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     Handler handler = new Handler();
 
-    //Button setting_button;
+    Button setting_button;
     //Button exit_btn;
 
     View setting_layout;
@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
         }, 0, 1000);
     }
 
-    //public class setting_button_listener implements View.OnClickListener{
-        //@Override
-        //public void onClick(View view){
+    public class setting_button_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
             //setting_layout.setVisibility(View.VISIBLE);
-        //}
-    //}
+        }
+    }
 
     //public class exit_btn_listener implements View.OnClickListener{
         //@Override
