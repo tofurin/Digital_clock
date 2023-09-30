@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         //各buttonのid取得
         Texttime = findViewById(R.id.Texttime);
-        //setting_button = findViewById(R.id.setting_button);
+        setting_button = findViewById(R.id.setting_button);
         //setting_layout = findViewById(R.id.setting_layout);
         //exit_btn = findViewById(R.id.exit_btn);
 
