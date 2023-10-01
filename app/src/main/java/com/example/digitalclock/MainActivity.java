@@ -3,6 +3,8 @@ package com.example.digitalclock;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         //各buttonのリスナークラス登録
         setting_button.setOnClickListener(new setting_button_listener());
         exit_btn.setOnClickListener(new exit_btn_listener());
+
+        SharedPreferences ShredPreferences = getSharedPreferences("Degital_clock_set", Context.MODE_PRIVATE);
 
         timer = new Timer();
 
