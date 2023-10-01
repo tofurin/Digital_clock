@@ -36,22 +36,22 @@
         android:layout_width="60sp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/round_button_bg"
         android:backgroundTint="#40FFFFFF"
         android:text="@string/setting_button"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Texttime" />
 
     <LinearLayout
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:alpha="300"
-        android:background="#F6F1F1"
+        android:background="@drawable/round_sheet_bg"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/Texttime"
         tools:layout_editor_absoluteX="0dp">
 
