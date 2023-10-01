@@ -1,10 +1,13 @@
 package com.example.digitalclock;
 
+import static androidx.core.content.SharedPreferencesKt.edit;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
     Button setting_button;
     Button exit_btn;
 
+    Button bg_black_btn, bg_white_btn,tx_green_btn,tx_white_btn,tx_red_btn,tx_blue_btn;
+
     View bottomSheet;
+
+    Context context;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,12 +50,49 @@ public class MainActivity extends AppCompatActivity {
         setting_button = findViewById(R.id.setting_button);
         exit_btn = findViewById(R.id.exit_btn);
         bottomSheet = findViewById(R.id.bottomSheet);
+        bg_black_btn=findViewById(R.id.bg_black_btn);
+        bg_white_btn=findViewById(R.id.bg_white_btn);
+        tx_green_btn=findViewById(R.id.tx_green_btn);
+        tx_white_btn=findViewById(R.id.tx_white_btn);
+        tx_red_btn=findViewById(R.id.tx_red_btn);
+        tx_blue_btn=findViewById(R.id.tx_blue_btn);
 
         //各buttonのリスナークラス登録
         setting_button.setOnClickListener(new setting_button_listener());
         exit_btn.setOnClickListener(new exit_btn_listener());
 
-        SharedPreferences ShredPreferences = getSharedPreferences("Degital_clock_set", Context.MODE_PRIVATE);
+        bg_white_btn.setOnClickListener(new bg_white_btn_listener());
+        tx_green_btn.setOnClickListener(new tx_green_btn_listener());
+        tx_white_btn.setOnClickListener(new tx_white_btn_listener());
+        tx_red_btn.setOnClickListener(new tx_red_btn_listener());
+        tx_blue_btn.setOnClickListener(new tx_blue_btn_listener());
+
+        SharedPreferences prefs = getSharedPreferences("Digital_clock_set", Context.MODE_PRIVATE);
+
+        if(prefs.contains("bg_color") != true){
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("bg_color","black");
+            editor.apply();
+        }
+
+
+        if(prefs.contains("tx_color") != true) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("tx_color", "green");
+            editor.apply();
+        }
+
+        //bgにカラー設定適用
+        String bg_color_name = prefs.getString("bg_color","black");
+        int bg_color_id = getResources().getIdentifier(bg_color_name, "color",getPackageName());
+        Texttime.setBackgroundColor(getResources().getColor(bg_color_id,getTheme()));
+
+        //txにカラー設定適用
+        String tx_color_name = prefs.getString("tx_color","green");
+        int tx_color_id = getResources().getIdentifier(tx_color_name, "color",getPackageName());
+        Texttime.setTextColor(getResources().getColor(tx_color_id, getTheme()));
+
+
 
         timer = new Timer();
 
@@ -68,6 +112,61 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }, 0, 1000);
+
+        bg_black_btn.setOnClickListener(new bg_black_btn_listener(){
+            @Override
+            public void onClick(View view){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("bg_color","black");
+                editor.apply();
+                Texttime.setBackgroundResource(R.color.black);
+            }
+        });
+        bg_white_btn.setOnClickListener(new bg_white_btn_listener(){
+            @Override
+            public void onClick(View view){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("bg_color","white");
+                editor.apply();
+                Texttime.setBackgroundResource(R.color.white);
+            }
+        });
+        tx_green_btn.setOnClickListener(new tx_green_btn_listener(){
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("tx_color", "green");
+                editor.apply();
+                Texttime.setTextColor(getResources().getColor(R.color.green,getTheme()));
+            }
+        });
+        tx_white_btn.setOnClickListener(new tx_white_btn_listener(){
+            @Override
+            public void onClick(View view){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("tx_color","white");
+                editor.apply();
+                Texttime.setTextColor(getResources().getColor(R.color.white,getTheme()));
+            }
+        });
+        tx_red_btn.setOnClickListener(new tx_red_btn_listener(){
+            @Override
+            public void onClick(View view){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("tx_color","red");
+                editor.apply();
+                Texttime.setTextColor(getResources().getColor(R.color.red,getTheme()));
+            }
+        });
+        tx_blue_btn.setOnClickListener(new tx_blue_btn_listener(){
+            @Override
+            public void onClick(View view){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("tx_color","blue");
+                editor.apply();
+                Texttime.setTextColor(getResources().getColor(R.color.blue,getTheme()));
+            }
+        });
     }
 
     public class setting_button_listener implements View.OnClickListener{
@@ -81,6 +180,46 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view){
             bottomSheet.setVisibility(View.GONE);
+        }
+    }
+
+    class bg_black_btn_listener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view){
+
+        }
+    }
+    public class bg_white_btn_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+
+        }
+    }
+
+    public class tx_green_btn_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+
+        }
+    }
+
+    public class tx_white_btn_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+
+        }
+    }
+
+    public class tx_red_btn_listener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+        }
+    }
+    public class tx_blue_btn_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }

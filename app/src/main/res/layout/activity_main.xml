@@ -48,9 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:background="@drawable/round_sheet_bg"
-        android:backgroundTint="#FFF00FFF"
+        android:backgroundTint="#9FB5AE"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/Texttime"
         tools:layout_editor_absoluteX="53dp">
 
@@ -62,6 +62,8 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/round_button_bg_in_light"
             android:text="@string/exit_btn"
+            android:textColor="@color/white"
+            android:textSize="28sp"
             app:backgroundTint="@null" />
 
         <TextView
@@ -75,7 +77,6 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:typeface="sans" />
-
 
 
         <LinearLayout
@@ -132,7 +133,7 @@
                     android:layout_height="120dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/img_color_green"
                     android:text="@string/tx_green_btn"
                     app:backgroundTint="@null" />
@@ -143,7 +144,7 @@
                     android:layout_height="120dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/img_color_white"
                     android:text="@string/tx_green_btn"
                     app:backgroundTint="@null" />
@@ -155,23 +156,23 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/tx_blue_btn"
+                    android:id="@+id/tx_red_btn"
                     android:layout_width="150dp"
                     android:layout_height="120dp"
-                    android:text="@string/tx_red_btn"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/img_color_red"
-                    app:backgroundTint="@null"/>
+                    android:text="@string/tx_red_btn"
+                    app:backgroundTint="@null" />
 
                 <Button
                     android:id="@+id/tx_blue_btn"
                     android:layout_width="150dp"
                     android:layout_height="120dp"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/img_color_blue"
                     android:text="@string/tx_blue_btn"
                     app:backgroundTint="@null" />
