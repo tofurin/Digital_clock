@@ -1,13 +1,11 @@
 package com.example.digitalclock;
 
-import static androidx.core.content.SharedPreferencesKt.edit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,13 +27,12 @@ public class MainActivity extends AppCompatActivity {
     Handler handler = new Handler();
 
     Button setting_button;
-    Button exit_btn;
+    Button exit_btn, exit_btn_trans;
 
     Button bg_black_btn, bg_white_btn,tx_green_btn,tx_white_btn,tx_red_btn,tx_blue_btn;
 
     View bottomSheet;
 
-    Context context;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -49,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Texttime = findViewById(R.id.Texttime);
         setting_button = findViewById(R.id.setting_button);
         exit_btn = findViewById(R.id.exit_btn);
+        exit_btn_trans = findViewById(R.id.exit_btn_trans);
         bottomSheet = findViewById(R.id.bottomSheet);
         bg_black_btn=findViewById(R.id.bg_black_btn);
         bg_white_btn=findViewById(R.id.bg_white_btn);
@@ -60,12 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //各buttonのリスナークラス登録
         setting_button.setOnClickListener(new setting_button_listener());
         exit_btn.setOnClickListener(new exit_btn_listener());
-
-        bg_white_btn.setOnClickListener(new bg_white_btn_listener());
-        tx_green_btn.setOnClickListener(new tx_green_btn_listener());
-        tx_white_btn.setOnClickListener(new tx_white_btn_listener());
-        tx_red_btn.setOnClickListener(new tx_red_btn_listener());
-        tx_blue_btn.setOnClickListener(new tx_blue_btn_listener());
+        exit_btn_trans.setOnClickListener(new exit_btn_trans_listener());
 
         SharedPreferences prefs = getSharedPreferences("Digital_clock_set", Context.MODE_PRIVATE);
 
@@ -82,15 +75,31 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
 
+        if(prefs.contains("bg_color_btn") != true){
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("bg_color_btn", "dark");
+            editor.apply();
+        }
+
         //bgにカラー設定適用
         String bg_color_name = prefs.getString("bg_color","black");
-        int bg_color_id = getResources().getIdentifier(bg_color_name, "color",getPackageName());
+        int bg_color_id = getResources().getIdentifier(bg_color_name,"color",getPackageName());
         Texttime.setBackgroundColor(getResources().getColor(bg_color_id,getTheme()));
 
         //txにカラー設定適用
         String tx_color_name = prefs.getString("tx_color","green");
         int tx_color_id = getResources().getIdentifier(tx_color_name, "color",getPackageName());
         Texttime.setTextColor(getResources().getColor(tx_color_id, getTheme()));
+
+        //setting_btn設定適用
+        String bg_color_btn_name = prefs.getString("bg_color_btn", "dark");
+        if(bg_color_btn_name == "dark"){
+            int background_resource_id = R.drawable.round_button_bg;
+            setting_button.setBackgroundResource(background_resource_id);
+        } else if (bg_color_btn_name == "light"){
+            int background_resource_id = R.drawable.round_button_bg_in_light;
+            setting_button.setBackgroundResource(background_resource_id);
+        }
 
 
 
@@ -118,8 +127,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("bg_color","black");
+                editor.putString("bg_color_btn", "dark");
                 editor.apply();
                 Texttime.setBackgroundResource(R.color.black);
+                int background_resource_id = R.drawable.round_button_bg;
+                setting_button.setBackgroundResource(background_resource_id);
             }
         });
         bg_white_btn.setOnClickListener(new bg_white_btn_listener(){
@@ -127,8 +139,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("bg_color","white");
+                editor.putString("bg_color_btn", "light");
                 editor.apply();
                 Texttime.setBackgroundResource(R.color.white);
+                int background_resource_id = R.drawable.round_button_bg_in_light;
+                setting_button.setBackgroundResource(background_resource_id);
             }
         });
         tx_green_btn.setOnClickListener(new tx_green_btn_listener(){
@@ -183,40 +198,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class bg_black_btn_listener implements View.OnClickListener{
+    public class exit_btn_trans_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
+            bottomSheet.setVisibility(View.GONE);
+        }
+    }
+
+    static class bg_black_btn_listener implements View.OnClickListener{
 
         @Override
         public void onClick(View view){
 
         }
     }
-    public class bg_white_btn_listener implements View.OnClickListener{
+    static public class bg_white_btn_listener implements View.OnClickListener{
         @Override
         public void onClick(View view){
 
         }
     }
 
-    public class tx_green_btn_listener implements View.OnClickListener{
+    static public class tx_green_btn_listener implements View.OnClickListener{
         @Override
         public void onClick(View view){
 
         }
     }
 
-    public class tx_white_btn_listener implements View.OnClickListener{
+    static public class tx_white_btn_listener implements View.OnClickListener{
         @Override
         public void onClick(View view){
 
         }
     }
 
-    public class tx_red_btn_listener implements View.OnClickListener {
+    static public class tx_red_btn_listener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
         }
     }
-    public class tx_blue_btn_listener implements View.OnClickListener{
+    static public class tx_blue_btn_listener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
 

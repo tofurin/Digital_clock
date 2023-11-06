@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    android:visibility="visible">
+    android:background="#FF000000"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/Texttime"
@@ -16,7 +18,7 @@
         android:singleLine="false"
         android:text="@string/Texttime"
         android:textAlignment="center"
-        android:textColor="#16FE36"
+        android:textColor="#FF16FE36"
         android:textSize="12sp"
         android:textStyle="bold"
         android:typeface="normal"
@@ -31,147 +33,204 @@
 
     <Button
         android:id="@+id/setting_button"
-        android:layout_width="60dp"
+        android:layout_width="60sp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_button_bg"
-        android:backgroundTint="#40FFFFFF"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/setting_button"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFFFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:backgroundTint="@null"/>
 
     <LinearLayout
         android:id="@+id/bottomSheet"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/round_sheet_bg"
-        android:backgroundTint="#9FB5AE"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:baselineAligned="false"
         app:layout_constraintEnd_toEndOf="@+id/Texttime"
         tools:layout_editor_absoluteY="0dp">
 
-        <Button
-            android:id="@+id/exit_btn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/round_button_bg_in_light"
-            android:text="@string/exit_btn"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:backgroundTint="@null" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/frame_left"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/text_bg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/text_bg"
-                android:textColor="#FF000000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:typeface="sans" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/exit_btn_trans"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_transparency"
+                    android:text="@string/exit_btn_trans"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/round_sheet_bg"
+            android:backgroundTint="#A09FB5AE">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/exit_btn"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/round_button_bg_in_light"
+                    android:text="@string/exit_btn"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:backgroundTint="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/text_bg"
+                    android:textColor="#FF000000"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:layout_constraintStart_toEndOf="@id/exit_btn"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/bg_black_btn"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/img_color_black"
                     android:text="@string/bg_black_btn"
-                    app:backgroundTint="@null" />
+                    app:backgroundTint="@null"
+                    app:layout_constraintEnd_toStartOf="@+id/bg_white_btn"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/exit_btn"
+                    app:layout_constraintTop_toBottomOf="@id/text_bg"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.3" />
 
                 <Button
                     android:id="@+id/bg_white_btn"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/img_color_white"
                     android:text="@string/bg_white_btn"
-                    app:backgroundTint="@null" />
-            </LinearLayout>
+                    app:backgroundTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/bg_black_btn"
+                    app:layout_constraintTop_toTopOf="@id/bg_black_btn"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.3" />
 
-            <TextView
-                android:id="@+id/text_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/text_tx"
-                android:textColor="#FF000000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:typeface="sans" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/text_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/text_tx"
+                    android:textColor="#FF000000"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    app:layout_constraintStart_toEndOf="@id/exit_btn"
+                    app:layout_constraintTop_toBottomOf="@id/bg_black_btn" />
 
                 <Button
                     android:id="@+id/tx_green_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/img_color_green"
                     android:text="@string/tx_green_btn"
-                    app:backgroundTint="@null" />
+                    app:backgroundTint="@null"
+                    app:layout_constraintBottom_toTopOf="@+id/tx_red_btn"
+                    app:layout_constraintEnd_toStartOf="@+id/tx_white_btn"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@id/exit_btn"
+                    app:layout_constraintTop_toBottomOf="@+id/text_tx"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.3" />
 
                 <Button
                     android:id="@+id/tx_white_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/img_color_white"
                     android:text="@string/tx_green_btn"
-                    app:backgroundTint="@null" />
+                    app:backgroundTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tx_green_btn"
+                    app:layout_constraintTop_toTopOf="@id/tx_green_btn"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.3" />
 
                 <Button
                     android:id="@+id/tx_red_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/img_color_red"
                     android:text="@string/tx_red_btn"
-                    app:backgroundTint="@null" />
+                    app:backgroundTint="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tx_blue_btn"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/exit_btn"
+                    app:layout_constraintTop_toBottomOf="@+id/tx_green_btn"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.3" />
 
                 <Button
                     android:id="@+id/tx_blue_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/img_color_blue"
                     android:text="@string/tx_blue_btn"
-                    app:backgroundTint="@null" />
-            </LinearLayout>
-        </LinearLayout>
+                    app:backgroundTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tx_red_btn"
+                    app:layout_constraintTop_toTopOf="@id/tx_red_btn"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
 
 
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

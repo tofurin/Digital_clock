@@ -36,7 +36,7 @@ public class NewAppWidget extends AppWidgetProvider {
                     // Instruct the widget manager to update the widget
                     appWidgetManager.updateAppWidget(appWidgetId, views);
 
-                    handler.postDelayed(updateWidgetRunnable, 100);
+                    handler.postDelayed(updateWidgetRunnable, 1000);
                 }
             };
 

@@ -9,18 +9,21 @@
 
     <TextView
         android:id="@+id/Widget_text"
-        android:layout_width="387dp"
-        android:layout_height="707dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/Widget_text"
-        android:textColor="#16FE36"
-        android:textSize="27dp"
+        android:textColor="@color/green"
+        android:textSize="27sp"
         android:textStyle="bold"
         app:autoSizeTextType="none" />
+
+    <Button
+        android:id="@+id/refresh_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/widget_btn_background"
+        android:visibility="invisible" />
 </RelativeLayout>

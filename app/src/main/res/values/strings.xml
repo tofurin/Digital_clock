@@ -8,6 +8,7 @@
     <string name="Widget_text" />
     <string name="setting_button">i</string>
     <string name="exit_btn">×</string>
+    <string name="exit_btn_trans"/>
     <string name="text_bg">背景カラー</string>
     <string name="bg_black_btn" />
     <string name="bg_white_btn" />
