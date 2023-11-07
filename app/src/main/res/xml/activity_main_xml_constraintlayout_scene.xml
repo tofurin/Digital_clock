@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/exit_btn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            motion:transitionEasing="linear" />
+        <Constraint
+            android:id="@+id/text_bg"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            motion:layout_constraintVertical_chainStyle="spread"
+            motion:layout_constraintVertical_weight="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
+            motion:layout_constraintBottom_toTopOf="@+id/bg_black_btn"
+            motion:layout_constraintTop_toBottomOf="@+id/exit_btn" />
+        <Constraint
+            android:id="@+id/bg_black_btn"
+            motion:layout_constraintWidth_percent=".4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintHorizontal_chainStyle="spread"
+            motion:layout_constraintHeight_default="percent"
+            motion:layout_constraintHorizontal_weight="1"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintWidth_default="percent"
+            motion:layout_constraintEnd_toStartOf="@id/bg_white_btn"
+            motion:layout_constraintBottom_toTopOf="@+id/text_tx"
+            motion:layout_constraintTop_toBottomOf="@+id/text_bg"
+            motion:layout_constraintHeight_percent=".2"
+            motion:layout_constraintHorizontal_bias="0.5" />
+        <Constraint
+            android:id="@+id/bg_white_btn"
+            motion:layout_constraintWidth_percent=".4"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintHeight_default="percent"
+            motion:layout_constraintTop_toTopOf="@id/bg_black_btn"
+            motion:layout_constraintHorizontal_weight="1"
+            motion:layout_constraintWidth_default="percent"
+            motion:layout_constraintStart_toEndOf="@id/bg_black_btn"
+            motion:layout_constraintBottom_toBottomOf="@id/bg_black_btn"
+            motion:layout_constraintHeight_percent=".2" />
+        <Constraint
+            android:id="@+id/text_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/bg_black_btn"
+            android:layout_marginStart="10dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+    </ConstraintSet>
+</MotionScene>

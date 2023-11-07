@@ -3,16 +3,17 @@ package com.example.digitalclock;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     View bottomSheet;
 
+    SharedPreferences prefs;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,29 +56,51 @@ public class MainActivity extends AppCompatActivity {
         tx_red_btn=findViewById(R.id.tx_red_btn);
         tx_blue_btn=findViewById(R.id.tx_blue_btn);
 
+
         //各buttonのリスナークラス登録
         setting_button.setOnClickListener(new setting_button_listener());
         exit_btn.setOnClickListener(new exit_btn_listener());
-        exit_btn_trans.setOnClickListener(new exit_btn_trans_listener());
 
-        SharedPreferences prefs = getSharedPreferences("Digital_clock_set", Context.MODE_PRIVATE);
+        //画面幅を取得
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screen_width = displayMetrics.widthPixels;
+        int screen_height = displayMetrics.heightPixels;
 
-        if(prefs.contains("bg_color") != true){
+
+        prefs = getSharedPreferences("Digital_clock_set", Context.MODE_PRIVATE);
+
+
+        if(prefs.contains("bg_color") == false){
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("bg_color","black");
             editor.apply();
         }
 
 
-        if(prefs.contains("tx_color") != true) {
+        if(prefs.contains("tx_color") == false) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("tx_color", "green");
             editor.apply();
         }
 
-        if(prefs.contains("bg_color_btn") != true){
+        if(prefs.contains("bg_color_btn") == false){
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("bg_color_btn", "dark");
+            editor.apply();
+        }
+
+        if(prefs.contains("screen_width") == false) {
+            SharedPreferences.Editor editor = prefs.edit();
+            float textSize_width = (float)screen_width * 0.22f;
+            editor.putFloat("screen_width", textSize_width);
+            editor.apply();
+        }
+
+        if(prefs.contains("screen_height") == false){
+            SharedPreferences.Editor editor = prefs.edit();
+            float textSize_height = (float)screen_height * 0.3f;
+            editor.putFloat("screen_height", textSize_height);
             editor.apply();
         }
 
@@ -93,15 +116,20 @@ public class MainActivity extends AppCompatActivity {
 
         //setting_btn設定適用
         String bg_color_btn_name = prefs.getString("bg_color_btn", "dark");
-        if(bg_color_btn_name == "dark"){
+        if(bg_color_btn_name.equals("dark")){
             int background_resource_id = R.drawable.round_button_bg;
             setting_button.setBackgroundResource(background_resource_id);
-        } else if (bg_color_btn_name == "light"){
+            setting_button.setTextColor(getResources().getColor(R.color.black, getTheme()));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.black, getTheme()));
+        } else if (bg_color_btn_name.equals("light")){
             int background_resource_id = R.drawable.round_button_bg_in_light;
             setting_button.setBackgroundResource(background_resource_id);
+            setting_button.setTextColor(getResources().getColor(R.color.white, getTheme()));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white, getTheme()));
         }
 
-
+        //テキストサイズ設定適用
+        adjust(getResources().getConfiguration(),findViewById(R.id.Texttime));
 
         timer = new Timer();
 
@@ -114,13 +142,13 @@ public class MainActivity extends AppCompatActivity {
 
                 handler.post(new Runnable() {
                     @Override
-                    public void run() {
-                        Texttime.setText(currenttime);
+                    public void run() {Texttime.setText(currenttime);
                     }
 
                 });
             }
         }, 0, 1000);
+
 
         bg_black_btn.setOnClickListener(new bg_black_btn_listener(){
             @Override
@@ -132,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                 Texttime.setBackgroundResource(R.color.black);
                 int background_resource_id = R.drawable.round_button_bg;
                 setting_button.setBackgroundResource(background_resource_id);
+                setting_button.setTextColor(getResources().getColor(R.color.black, getTheme()));
+                getWindow().setStatusBarColor(getResources().getColor(R.color.black, getTheme()));
             }
         });
         bg_white_btn.setOnClickListener(new bg_white_btn_listener(){
@@ -144,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
                 Texttime.setBackgroundResource(R.color.white);
                 int background_resource_id = R.drawable.round_button_bg_in_light;
                 setting_button.setBackgroundResource(background_resource_id);
+                setting_button.setTextColor(getResources().getColor(R.color.white, getTheme()));
+                getWindow().setStatusBarColor(getResources().getColor(R.color.white, getTheme()));
             }
         });
         tx_green_btn.setOnClickListener(new tx_green_btn_listener(){
@@ -182,26 +214,58 @@ public class MainActivity extends AppCompatActivity {
                 Texttime.setTextColor(getResources().getColor(R.color.blue,getTheme()));
             }
         });
+
+        setting_button.setOnClickListener(new setting_button_listener(){
+            @Override
+            public void onClick(View view){
+                bottomSheet.setVisibility(View.VISIBLE);
+            }
+        });
+
+        exit_btn.setOnClickListener(new exit_btn_listener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheet.setVisibility(view.GONE);
+            }
+        });
+        exit_btn_trans.setOnClickListener(new exit_btn_trans_listener(){
+            @Override
+            public void onClick(View view) {
+                bottomSheet.setVisibility(View.GONE);
+            }
+        });
     }
 
-    public class setting_button_listener implements View.OnClickListener{
-        @Override
-        public void onClick(View view){
-            bottomSheet.setVisibility(View.VISIBLE);
+    public void onConfigurationChanged(Configuration newConfig, SharedPreferences prefs){
+        super.onConfigurationChanged(newConfig);
+        adjust(newConfig,findViewById(R.id.Texttime));
+    }
+
+    private void adjust(Configuration newConfig, TextView Texttime){
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            float text_size_height = prefs.getFloat("screen_height",100f);
+            Texttime.setTextSize(TypedValue.COMPLEX_UNIT_PX, text_size_height);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            float text_size_width = prefs.getFloat("screen_width", 70f);
+            Texttime.setTextSize(TypedValue.COMPLEX_UNIT_PX, text_size_width);
         }
     }
 
-    public class exit_btn_listener implements View.OnClickListener{
+    static class setting_button_listener implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            bottomSheet.setVisibility(View.GONE);
         }
     }
 
-    public class exit_btn_trans_listener implements View.OnClickListener{
+    static class exit_btn_listener implements View.OnClickListener{
         @Override
         public void onClick(View view){
-            bottomSheet.setVisibility(View.GONE);
+        }
+    }
+
+    static class exit_btn_trans_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view){
         }
     }
 

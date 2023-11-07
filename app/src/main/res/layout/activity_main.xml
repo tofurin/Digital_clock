@@ -16,26 +16,20 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/Texttime"
-        android:textAlignment="center"
+        android:textSize="16dp"
         android:textColor="#FF16FE36"
         android:textStyle="bold"
-        android:typeface="sans"
-        app:autoSizeMaxTextSize="100sp"
-        app:autoSizeMinTextSize="12sp"
-        app:autoSizeStepGranularity="2sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/setting_button"
-        android:layout_width="60sp"
+        android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         android:text="@string/setting_button"
         android:textColor="#FFFFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,9 +41,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="parent">
+        app:layout_constraintStart_toEndOf="parent"
+        app:behavior_peekHeight="100dp"
+        app:behavior_hideable="true">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -67,6 +63,8 @@
 
 
         </FrameLayout>
+
+
 
         <FrameLayout
             android:layout_width="match_parent"
