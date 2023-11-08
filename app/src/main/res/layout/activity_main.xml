@@ -228,6 +228,22 @@
                     app:layout_constraintTop_toTopOf="@id/tx_red_btn"
                     app:layout_constraintWidth_default="percent"
                     app:layout_constraintWidth_percent=".4" />
+
+                <Button
+                    android:id="@+id/tx_black_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/img_color_black"
+                    android:text="@string/tx_black_btn"
+                    android:visibility="visible"
+                    app:backgroundTint="@null"
+                    app:layout_constraintStart_toStartOf="@id/tx_white_btn"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent=".2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintTop_toTopOf="@id/tx_green_btn"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".4" />
             </androidx.constraintlayout.motion.widget.MotionLayout>
         </FrameLayout>
     </LinearLayout>

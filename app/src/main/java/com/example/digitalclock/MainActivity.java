@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Button setting_button;
     Button exit_btn, exit_btn_trans;
 
-    Button bg_black_btn, bg_white_btn,tx_green_btn,tx_white_btn,tx_red_btn,tx_blue_btn;
+    Button bg_black_btn, bg_white_btn,tx_green_btn,tx_white_btn,tx_red_btn,tx_blue_btn, tx_black_btn;
 
     View bottomSheet;
 
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         tx_white_btn=findViewById(R.id.tx_white_btn);
         tx_red_btn=findViewById(R.id.tx_red_btn);
         tx_blue_btn=findViewById(R.id.tx_blue_btn);
+        tx_black_btn = findViewById(R.id.tx_black_btn);
 
 
         //各buttonのリスナークラス登録
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(prefs.contains("screen_height") == false){
             SharedPreferences.Editor editor = prefs.edit();
-            float textSize_height = (float)screen_height * 0.3f;
+            float textSize_height = (float)screen_height * 0.25f;
             editor.putFloat("screen_height", textSize_height);
             editor.apply();
         }
@@ -162,6 +163,18 @@ public class MainActivity extends AppCompatActivity {
                 setting_button.setBackgroundResource(background_resource_id);
                 setting_button.setTextColor(getResources().getColor(R.color.black, getTheme()));
                 getWindow().setStatusBarColor(getResources().getColor(R.color.black, getTheme()));
+                tx_black_btn.setVisibility(View.INVISIBLE);
+                tx_black_btn.setEnabled(false);
+                tx_white_btn.setVisibility(View.VISIBLE);
+                tx_white_btn.setEnabled(true);
+                String color="black";
+                if(color.equals(prefs.getString("tx_color","black"))){
+                    editor.putString("tx_color","white");
+                    editor.apply();
+                    Texttime.setTextColor(getResources().getColor(R.color.white,getTheme()));
+                }
+
+
             }
         });
         bg_white_btn.setOnClickListener(new bg_white_btn_listener(){
@@ -176,6 +189,16 @@ public class MainActivity extends AppCompatActivity {
                 setting_button.setBackgroundResource(background_resource_id);
                 setting_button.setTextColor(getResources().getColor(R.color.white, getTheme()));
                 getWindow().setStatusBarColor(getResources().getColor(R.color.white, getTheme()));
+                tx_white_btn.setVisibility(View.INVISIBLE);
+                tx_white_btn.setEnabled(false);
+                tx_black_btn.setVisibility(View.VISIBLE);
+                tx_black_btn.setEnabled(true);
+                String color = "white";
+                if(color.equals(prefs.getString("tx_color","white"))){
+                    editor.putString("tx_color","black");
+                    editor.apply();
+                    Texttime.setTextColor(getResources().getColor(R.color.black,getTheme()));
+                }
             }
         });
         tx_green_btn.setOnClickListener(new tx_green_btn_listener(){
@@ -212,6 +235,16 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("tx_color","blue");
                 editor.apply();
                 Texttime.setTextColor(getResources().getColor(R.color.blue,getTheme()));
+            }
+        });
+
+        tx_black_btn.setOnClickListener(new tx_black_btn_listener(){
+            @Override
+            public void onClick(View view){
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("tx_color","black");
+                editor.apply();
+                Texttime.setTextColor(getResources().getColor(R.color.black,getTheme()));
             }
         });
 
@@ -303,6 +336,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     static public class tx_blue_btn_listener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+
+        }
+    }
+
+    static public class tx_black_btn_listener implements View.OnClickListener{
         @Override
         public void onClick(View view) {
 

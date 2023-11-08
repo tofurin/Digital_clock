@@ -14,6 +14,7 @@
     <string name="bg_white_btn" />
     <string name="text_tx">テキストカラー</string>
     <string name="tx_green_btn" />
+    <string name="tx_black_btn" />
     <string name="tx_white_btn" />
     <string name="tx_red_btn" />
     <string name="tx_blue_btn" />
