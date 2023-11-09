@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
         exit_btn.setOnClickListener(new exit_btn_listener());
 
         //画面幅を取得
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int screen_width = displayMetrics.widthPixels;
-        int screen_height = displayMetrics.heightPixels;
+        //DisplayMetrics displayMetrics = new DisplayMetrics();
+        //getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        //int screen_width = displayMetrics.widthPixels;
+        //int screen_height = displayMetrics.heightPixels;
 
 
         prefs = getSharedPreferences("Digital_clock_set", Context.MODE_PRIVATE);
@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("bg_color_btn", "dark");
             editor.apply();
         }
-
-        if(prefs.contains("screen_width") == false) {
+        /*if(prefs.contains("screen_width") == false) {
             SharedPreferences.Editor editor = prefs.edit();
             float textSize_width = (float)screen_width * 0.22f;
             editor.putFloat("screen_width", textSize_width);
@@ -104,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putFloat("screen_height", textSize_height);
             editor.apply();
         }
+         */
 
         //bgにカラー設定適用
         String bg_color_name = prefs.getString("bg_color","black");
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //テキストサイズ設定適用
-        adjust(getResources().getConfiguration(),findViewById(R.id.Texttime));
+        //adjust(getResources().getConfiguration(),findViewById(R.id.Texttime));
 
         timer = new Timer();
 
@@ -269,12 +269,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onConfigurationChanged(Configuration newConfig, SharedPreferences prefs){
+    /*public void onConfigurationChanged(Configuration newConfig){
         super.onConfigurationChanged(newConfig);
         adjust(newConfig,findViewById(R.id.Texttime));
     }
 
-    private void adjust(Configuration newConfig, TextView Texttime){
+
+    /*private void adjust(Configuration newConfig, TextView Texttime){
         if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
             float text_size_height = prefs.getFloat("screen_height",100f);
             Texttime.setTextSize(TypedValue.COMPLEX_UNIT_PX, text_size_height);
@@ -283,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
             Texttime.setTextSize(TypedValue.COMPLEX_UNIT_PX, text_size_width);
         }
     }
+
+     */
 
     static class setting_button_listener implements View.OnClickListener{
         @Override

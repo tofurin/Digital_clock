@@ -11,15 +11,17 @@
 
     <TextView
         android:id="@+id/Texttime"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
-        android:singleLine="true"
         android:text="@string/Texttime"
         android:textColor="#FF16FE36"
         android:textStyle="bold"
-        android:textSize="16sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMaxTextSize="500dp"
+        app:autoSizeMinTextSize="2dp"
+        app:autoSizeStepGranularity="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -244,9 +246,5 @@
                     app:layout_constraintWidth_percent=".3" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
-
-
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
