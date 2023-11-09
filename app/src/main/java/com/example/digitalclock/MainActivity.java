@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(prefs.contains("screen_height") == false){
             SharedPreferences.Editor editor = prefs.edit();
-            float textSize_height = (float)screen_height * 0.25f;
+            float textSize_height = (float)screen_height * 0.2f;
             editor.putFloat("screen_height", textSize_height);
             editor.apply();
         }
